@@ -63,7 +63,9 @@ drug_handler = ConversationHandler(
     persistent=True
 )
 
-
+about_handler = MessageHandler(Filters.text(lang_dict['about us']), main.about)
+partners_handler = MessageHandler(Filters.text(lang_dict['our partners']), main.partners)
+site_handler = MessageHandler(Filters.text(lang_dict['our site']), main.site)
 
 
 
@@ -74,4 +76,7 @@ handlers = [
     settings_handler,
     search_handler,
     drug_handler,
+    about_handler,
+    partners_handler,
+    site_handler,
 ]

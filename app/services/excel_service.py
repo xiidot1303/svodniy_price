@@ -4,8 +4,12 @@ from app.services.drug_service import (
     update_or_create_provider_by_data, 
 )
 from app.utils import fix_format_date_in_excel
-
+from app.models import Excel
 from datetime import datetime
+
+def get_last_excel():
+    obj = Excel.objects.all().last()
+    return obj
 
 def read_excel_and_update_data(file_url = 'files/prices.xls'):
     # open workbook
@@ -41,3 +45,4 @@ def read_excel_and_update_data(file_url = 'files/prices.xls'):
         ]
     # update or create objects
     update_or_create_drug_by_data(drug_values)
+

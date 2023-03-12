@@ -92,8 +92,10 @@ def get_max_and_min_price_of_drugs_query(query):
     prices = query.values_list('price', flat=True)
     pattern = r'\d+(\.\d+)?'
     new_prices = [float(element) for element in prices if re.match(pattern, element)]
-    return max(new_prices), min(new_prices)
-
+    try:
+        return max(new_prices), min(new_prices)
+    except:
+        return '', ''
 ### PROVER SERVICE
 def update_or_create_provider_by_data(values):
     # filter providers already same with database and excel

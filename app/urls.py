@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from django.contrib.auth.views import (
     LoginView, 
     LogoutView, 
@@ -19,6 +19,7 @@ urlpatterns = [
         template_name = 'registration/afterchanging.html'), name='password_change_done'),
     path('logout/', LogoutView.as_view(), name='logout'),
 
-    path('', main.test),
+    # files
+    re_path(r'^files/(?P<path>.*)$', main.get_file),
 
 ]

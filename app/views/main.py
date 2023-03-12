@@ -1,6 +1,7 @@
 from app.views import *
-from app.services.excel_service import read_excel_and_update_data
+import os
+from core.settings import BASE_DIR
 
-def test(request):
-    read_excel_and_update_data()
-    return HttpResponse('fe')
+def get_file(request, path):
+    file = open(os.path.join(BASE_DIR, f'files/{path}'), 'rb')
+    return FileResponse(file)

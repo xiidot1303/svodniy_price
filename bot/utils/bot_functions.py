@@ -21,35 +21,75 @@ from config import BOT_API_TOKEN
 bot = Bot(BOT_API_TOKEN)
 
 
-def update_message_reply_text(update, text, reply_markup=None):
+def update_message_reply_text(update, text, reply_markup=None, disable_web_page_preview = True,):
     message = update.message.reply_text(
         text,
         reply_markup=reply_markup,
         parse_mode = ParseMode.HTML,
-        disable_web_page_preview = True,
+        disable_web_page_preview = disable_web_page_preview,
     )
     return message
 
-def bot_send_message(update, context, text, reply_markup=None):
+def bot_send_message(update, context, text, reply_markup=None, disable_web_page_preview = True,):
     bot = context.bot
     message = bot.send_message(
         update.message.chat.id, 
         text,
         reply_markup=reply_markup,
         parse_mode = ParseMode.HTML,
-        disable_web_page_preview = True,
+        disable_web_page_preview = disable_web_page_preview,
         )
     return message
 
-def send_newsletter(bot, chat_id, text, reply_markup=None, pin_message=False):
+def bot_send_document(update, context, document, reply_markup=None, caption=None):
+    bot = context.bot
+    message = bot.send_document(
+        update.message.chat.id,
+        document,
+        caption=caption,
+        reply_markup=reply_markup,
+        parse_mode = ParseMode.HTML,
+    )
+    return message
+
+def send_newsletter(bot, chat_id, text, photo=None, video=None, document=None, reply_markup=None, pin_message=False):
     try:
-    # if True:
-        message = bot.send_message(
-            chat_id=chat_id,
-            text=text,
+        if not (photo or video or document):
+            # send text message
+            message = bot.send_message(
+                chat_id=chat_id,
+                text=text,
+                reply_markup=reply_markup,
+                parse_mode=ParseMode.HTML
+            )
+
+        # send photo
+        message = bot.send_photo(
+            chat_id,
+            photo,
+            caption=text,
             reply_markup=reply_markup,
-            parse_mode=ParseMode.HTML
+            parse_mode = ParseMode.HTML,
         )
+
+        # send video
+        message = bot.send_video(
+            chat_id,
+            video,
+            caption=text,
+            reply_markup=reply_markup,
+            parse_mode = ParseMode.HTML,
+        )
+
+        # send document
+        message = bot.send_document(
+            chat_id,
+            document,
+            caption=text,
+            reply_markup=reply_markup,
+            parse_mode = ParseMode.HTML,
+        )
+
         if pin_message:
             bot.pin_chat_message(chat_id=chat_id, message_id=message.message_id)
     except:

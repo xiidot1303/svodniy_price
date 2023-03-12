@@ -1,4 +1,5 @@
 from bot.services.language_service import get_word
+from app.services.excel_service import get_last_excel as _get_last_excel
 
 def select_drug_string(update):
     text = get_word('send drug name text', update)
@@ -11,7 +12,8 @@ def drug_information_list(update, drugs):
     # create line text
     line_text = "🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹"
     # create text
-    result_text = ""
+    date_published_excel = _get_last_excel().published.strftime('%d-%m-%Y')
+    result_text = f"{get_word('date published prices', update)}: {date_published_excel}"
     results = []
     n = 1
     for drug in drugs:
@@ -37,6 +39,7 @@ def drug_information_list(update, drugs):
         if n % 6 == 0:
             results.append(result_text)
             result_text = ""
+            
         n +=1
     # add result_text to result if not empty
     results.append(result_text) if result_text else None

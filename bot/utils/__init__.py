@@ -1,5 +1,4 @@
 from bot.utils.bot_functions import *
-from yandex_geocoder import Client
 
 def get_callback_query_data(update):
     data = update.data
@@ -22,14 +21,6 @@ def remove_inline_keyboards_from_last_msg(update, context):
         return msg
     except:
         return None
-
-def get_address_by_coordinates(lat, lon):
-    try:
-        client = Client('4d16304f-12ba-4134-ac9b-f0da5028a1f4')
-        location = client.address(lon, lat)
-        return location
-    except:
-        return ""
 
 def is_group(update):
     if update.message.chat.type == 'group' or update.message.chat.type == 'supergroup':

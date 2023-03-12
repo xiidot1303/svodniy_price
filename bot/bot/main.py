@@ -34,3 +34,29 @@ def search_drugs(update, context):
     # save last message to user_data
     context.user_data['last_msg'] = msg
     return GET_DRUG_NAME
+
+def about(update, context):
+    info = get_info()
+    user_lang = get_user_by_update(update).lang
+    if user_lang == 'uz' and info:
+        text = info.about_uz
+    elif user_lang == 'ru' and info:
+        text = info.about_ru
+    else:
+        text = '🧾'
+    update_message_reply_text(update, text)
+    
+
+def partners(update, context):
+    info = get_info()
+    if info:
+        file = get_info().partners
+        bot_send_document(update, context, file)
+    else:
+        text = '🤝'
+        update_message_reply_text(update, text)
+
+def site(update, context):
+    text = get_info().site if get_info() else '🌐'
+    update_message_reply_text(update, text, disable_web_page_preview=False)
+    
