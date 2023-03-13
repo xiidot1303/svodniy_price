@@ -23,7 +23,7 @@ class ProviderAdmin(admin.ModelAdmin):
     list_display = ['name', 'phone', 'address']
 
 class InfoAdmin(admin.ModelAdmin):
-    list_display = ['about_ru', 'about_ru', 'site', 'edit_button']
+    list_display = ['about_ru', 'about_uz', 'site', 'edit_button']
     list_display_links = ['edit_button']
     def edit_button(self, obj):
         change_url = reverse('admin:app_info_change', args=[obj.id])
