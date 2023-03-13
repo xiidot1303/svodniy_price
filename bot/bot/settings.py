@@ -33,7 +33,7 @@ def all_settings(update, context):
     elif msg == get_word("change phone number", update):
         user = get_user_by_update(update)
         text = (
-            get_word("your phone number", update).replace("<>", user.phone or '')
+            get_word("your phone number", update).replace("[]", user.phone or '')
             + "\n\n"
             + get_word("send new phone number", update)
         )

@@ -29,8 +29,8 @@ lang_dict = {
     "change name": ["""Ismni o\'zgartirish 👤""", """Смени имени 👤"""],
     "settings desc": ["""Sozlamalar ⚙️""", """Настройки ⚙️"""],
     "your phone number": [
-        """📌 Sizning telefon raqamingiz: <> 📌""",
-        """📌 Ваш номер телефона: <b> 📌""",
+        """📌 Sizning telefon raqamingiz: [] 📌""",
+        """📌 Ваш номер телефона: [] 📌""",
     ],
     "send new phone number": [
         """Yangi telefon raqamingizni yuboring!\n<i>Jarayonni bekor qilish uchun "🔙 Ortga" tugmasini bosing.</i>""",
