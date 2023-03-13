@@ -32,6 +32,7 @@ class MesageAdmin(admin.ModelAdmin):
     def small_text(self, obj):
         cut_text = obj.text[:20] + ' ...' if len(obj.text) >= 20 else obj.text
         return format_html(f'<p title={obj.text}>{cut_text}</p>')
+    small_text.short_description = 'Текст'
 
     def open_photo(self, obj):
         if obj.photo:
