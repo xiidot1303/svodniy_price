@@ -3,6 +3,7 @@ from bot.bot import *
 from transliterate import translit
 
 def get_inline_query(update, context):
+    chat_id=update.inline_query.from_user.id
     text = update.inline_query.query
     text = text.capitalize()
     text_ru = translit(text, 'ru')
@@ -21,7 +22,7 @@ def get_inline_query(update, context):
             ]
         )
     # search from database
-    streets = filter_drugs_by_title_regex(words, text_en, text_ru, text)
+    drugs = filter_drugs_by_title_regex(words, text_en, text_ru, text)
     # create inline query
     article = [
         inlinequeryresultarticle(
@@ -29,7 +30,7 @@ def get_inline_query(update, context):
             obj.title_en,
             title_id=obj.pk
             ) 
-            for obj in streets
+            for obj in drugs
     ]
     if not article:
         article = [

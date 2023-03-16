@@ -36,10 +36,10 @@ def read_excel_and_update_data(file_url = 'files/prices.xls'):
     # get values of drugs
     drug_values = [
         {
-            'title': sheet1.cell_value(i, 1), 'title_en': sheet1.cell_value(i, 2), 
-            'term': fix_format_date_in_excel(sheet1.cell_value(i, 8)), 'price': str(sheet1.cell_value(i, 5)), 
-            'provider_name': sheet1.cell_value(i, 9), 'manufacturer': sheet1.cell_value(i, 10), 
-            'country': sheet1.cell_value(i, 11) 
+            'title': sheet1.cell_value(i, 0), 'title_en': sheet1.cell_value(i, 1), 
+            'term': fix_format_date_in_excel(sheet1.cell_value(i, 7)), 'price': str(sheet1.cell_value(i, 4)), 
+            'provider_name': sheet1.cell_value(i, 8), 'manufacturer': sheet1.cell_value(i, 9), 
+            'country': sheet1.cell_value(i, 10) 
         }
         for i in range(2, sheet1.nrows)
         ]

@@ -7,8 +7,8 @@ def select_drug_string(update):
 
 def drug_information_list(update, drugs):
     # create template info text
-    info_text = "<b>{index}. {title}</b>\n<i>{provider_text}:</i> {provider}\n<i>{manufacturer_text}:</i> {manufacturer}\n"
-    info_text += "<i>{address_text}:</i> {address}\n<i>{price_text}:</i> {price}\n<i>{term_text}:</i> {term}\n<i>{phone_text}:</i> {phone}"
+    info_text = "<b>{index}. {title}</b>\n<i>{title_en_text}:</i> {title_en}\n<i>{provider_text}:</i> {provider}\n<i>{manufacturer_text}:</i> {manufacturer}\n"
+    info_text += "<i>{price_text}:</i> {price}\n<i>{term_text}:</i> {term}\n<i>{address_text}:</i> {address}\n<i>{phone_text}:</i> {phone}"
     # create line text
     line_text = "🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹"
     # create text
@@ -20,6 +20,8 @@ def drug_information_list(update, drugs):
         text = info_text.format(
             index = n,
             title = drug.title,
+            title_en_text = get_word('mnn', update),
+            title_en = drug.title_en,
             provider_text = get_word('provider', update),
             provider = drug.provider.name if drug.provider else '',
             manufacturer_text = get_word('manufacturer', update),
