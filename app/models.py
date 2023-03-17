@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.core.validators import FileExtensionValidator
 
 class Language(models.Model):
     user_ip = models.CharField(null=True, blank=False, max_length=32)
@@ -53,7 +54,10 @@ class Info(models.Model):
         verbose_name_plural = "Инфо"
 
 class Excel(models.Model):
-    file = models.FileField(null=True, blank=False, upload_to="excel/", verbose_name='Файл')
+    file = models.FileField(
+        null=True, blank=False, upload_to="excel/", verbose_name='Файл',
+        validators=[FileExtensionValidator(allowed_extensions=['xls'])]
+        )
     published = models.DateTimeField(db_index=True, null=True, auto_now_add=True, blank=True, verbose_name='Дата загрузки')
     is_uploaded = models.BooleanField(default=False)
 
