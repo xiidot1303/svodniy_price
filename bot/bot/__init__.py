@@ -102,7 +102,7 @@ def is_start(func):  # This deco break registration if user send /start.
             if data == 'main_menu':
                 # bot_delete_message(update, context)
                 bot_edit_message_text(update, context, update.message.text, update.message.message_id)
-            # some func
+            remove_inline_keyboards_from_last_msg(update, context)
             main_menu(args[0], args[1])
             return ConversationHandler.END
         else:

@@ -1,6 +1,6 @@
 from bot.bot import *
 
-@ignore_start
+@is_start
 def get_drug_name(update, context):
     msg = update.message.text
     # get drug_id from message
