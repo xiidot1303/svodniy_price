@@ -7,13 +7,13 @@ def select_drug_string(update):
 
 def drug_information_list(update, drugs):
     # create template info text
-    info_text = "<b>{index}. {title}</b>\n<i>{title_en_text}:</i> {title_en}\n<i>{provider_text}:</i> {provider}\n<i>{manufacturer_text}:</i> {manufacturer}\n<i>{country_text}</i>: {country}\n"
-    info_text += "\n<b><i>{price_text}:</i> {price} {sum}</b>\n\n<i>{term_text}:</i> {term}\n<i>{address_text}:</i> {address}\n<i>{phone_text}:</i> {phone}"
+    info_text = "<b>{index}. {title}</b>\n<i>{title_en_text}:</i> {title_en}\n<i>{provider_text}:</i> {provider}\n<i>{manufacturer_text}:</i> {manufacturer}\n<i>{country_text}:</i> {country}\n"
+    info_text += "\n<b><i>{price_text}:</i> {price} {sum}</b>\n\n<i>{term_text}:</i> {term}\n<i>{date_published_text}:</i> {date_published}\n<i>{address_text}:</i> {address}\n<i>{phone_text}:</i> {phone}"
     # create line text
     line_text = "🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹"
     # create text
-    date_published_excel = _get_last_excel().published.strftime('%d-%m-%Y')
-    result_text = f"{get_word('date published prices', update)}: {date_published_excel}"
+    # date_published_excel = _get_last_excel().published.strftime('%d-%m-%Y')
+    result_text = ""
     results = []
     n = 1
     for drug in drugs:
@@ -35,6 +35,8 @@ def drug_information_list(update, drugs):
             sum = get_word('sum', update),
             term_text = get_word('term', update),
             term = drug.term,
+            date_published_text = get_word('date published prices', update),
+            date_published = drug.published.strftime('%d.%m.%Y'),
             phone_text = get_word('phone', update),
             phone = drug.provider.phone if drug.provider else '',
         )
