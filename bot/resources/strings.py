@@ -94,7 +94,7 @@ lang_dict = {
 
     "mnn": ["Xalqaro nom", "Мнн"],
 
-    "": ["", ""],
+    "country": ["Davlat", "Страна"],
 
     "": ["", ""],
 
