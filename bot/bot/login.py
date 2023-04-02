@@ -45,9 +45,15 @@ def select_lang(update, context):
     get_or_create(user_id=update.message.chat.id)
     obj = get_object_by_user_id(user_id=update.message.chat.id)
     obj.lang = lang
+    obj.username = update.message.chat.username
+    obj.firstname = update.message.chat.first_name
+    obj.name = update.message.chat.first_name
+    obj.phone = ''
     obj.save()
 
-    return _to_the_get_name(update)
+    main_menu(update, context)
+    return ConversationHandler.END
+    # return _to_the_get_name(update)
 
 
 @is_start_registr
