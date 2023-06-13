@@ -7,7 +7,7 @@ from django.contrib.auth.views import (
 )
 
 from app.views import (
-    main
+    main, usage
 )
 
 urlpatterns = [
@@ -21,5 +21,8 @@ urlpatterns = [
 
     # files
     re_path(r'^files/(?P<path>.*)$', main.get_file),
+
+    # usage
+    path('usage-rate', usage.usage_rate, name='usage_rate'),
 
 ]

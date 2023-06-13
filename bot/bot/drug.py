@@ -28,6 +28,8 @@ def get_drug_name(update, context):
     remove_inline_keyboards_from_last_msg(update, context)
     [bot_send_message(update, context, text) for text in drugs_info_text_list]
     msg = bot_send_message(update, context, price_diff_text, markup)
+    # create usage
+    create_usage(drug.title, get_object_by_update(update))
     # set last message to user_data
     context.user_data['last_msg'] = msg
     return

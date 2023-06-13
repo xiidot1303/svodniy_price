@@ -4,6 +4,7 @@ from app.forms import *
 from django import forms
 from django.utils.html import format_html
 from django.urls import reverse
+from django.shortcuts import redirect
 
 class LanguageAdmin(admin.ModelAdmin):
     list_display = ['user_ip', 'lang']
@@ -45,8 +46,14 @@ class ExcelAdmin(admin.ModelAdmin):
     #     return format_html('<a class="btn btn-primary" href="{}"><i class="fas fa-edit"></i> Редактировать</a>', change_url)
     # edit_button.short_description = 'Действие'
 
+class UsageAdmin(admin.ModelAdmin):
+    list_display = ['bot_user', 'drug_title', 'lang', 'datetime']
+    def changelist_view(self, request, extra_context=None):
+        return redirect('usage_rate')
+
 # admin.site.register(Language, LanguageAdmin)
 admin.site.register(Drug, DrugAdmin)
 # admin.site.register(Provider, ProviderAdmin)
 admin.site.register(Info, InfoAdmin)
 admin.site.register(Excel, ExcelAdmin)
+admin.site.register(Usage, UsageAdmin)

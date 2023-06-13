@@ -68,3 +68,16 @@ class Excel(models.Model):
     class Meta:
         verbose_name = "Эксель"
         verbose_name_plural = "Эксель"
+
+class Usage(models.Model):
+    drug_title = models.CharField(null=True, blank=True, max_length=255, verbose_name='Название лекарств')
+    bot_user = models.ForeignKey(
+        'bot.Bot_user', related_name='usage_bot_user', 
+        null=True, blank=True, on_delete=models.PROTECT, verbose_name='Пользователь бота'
+        )
+    lang = models.CharField(null=True, blank=True, max_length=4)
+    datetime = models.DateTimeField(db_index=True, null=True, auto_now_add=True, blank=True, verbose_name='Дата')
+
+    class Meta:
+        verbose_name = "Использование поиска"
+        verbose_name_plural = "Использование поиска"

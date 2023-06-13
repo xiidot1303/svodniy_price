@@ -9,6 +9,7 @@ from bot.resources.conversationList import *
 
 from app.services.drug_service import *
 from app.services.info_service import *
+from app.services.usage_service import *
 
 def main_menu(update, context):
     try:
