@@ -61,7 +61,7 @@ lang_dict = {
     "select drug": ["Dorini tanlash 🔖", "Выбрать лекарство 🔖"],
 
     "send drug name text": [
-        "",
+        "<b>Dorini tanlash 🔖</b> tugmasini bosgan holda qidiruvni oching va ma'lumot olmoqchi bo'lgan preparat nomini yozib, ustiga bosing. 🕵️‍♀️💊",
         "<b>Выберите лекарство</b>, нажав на кнопку <i>Выбрать лекарство 🔖</i>, которая " +
             "выполняет поиск по лекарствам, а затем кликните, чтобы получить информацию о выбранном препарате. 🕵️‍♀️💊"
         ],
