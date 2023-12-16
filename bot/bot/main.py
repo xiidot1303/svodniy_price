@@ -1,6 +1,7 @@
 from bot.bot import *
 
 def start(update, context):
+    print(1111)
     if is_group(update):
         return 
 
@@ -37,6 +38,7 @@ def search_drugs(update, context):
 
 def about(update, context):
     info = get_info()
+    markup = select_drug_keyboard(update)
     user_lang = get_user_by_update(update).lang
     if user_lang == 'uz' and info:
         text = info.about_uz
@@ -44,19 +46,21 @@ def about(update, context):
         text = info.about_ru
     else:
         text = '🧾'
-    update_message_reply_text(update, text)
+    update_message_reply_text(update, text, reply_markup=markup)
     
 
 def partners(update, context):
     info = get_info()
+    markup = select_drug_keyboard(update)
     if info:
         file = get_info().partners
-        bot_send_document(update, context, file)
+        bot_send_document(update, context, file, reply_markup=markup)
     else:
         text = '🤝'
-        update_message_reply_text(update, text)
+        update_message_reply_text(update, text, reply_markup=markup)
 
 def site(update, context):
     text = get_info().site if get_info() else '🌐'
-    update_message_reply_text(update, text, disable_web_page_preview=False)
+    markup = select_drug_keyboard(update)
+    update_message_reply_text(update, text, reply_markup=markup, disable_web_page_preview=False)
     

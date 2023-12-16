@@ -49,19 +49,20 @@ settings_handler = ConversationHandler(
   
 )
 
-drug_handler = ConversationHandler(
-    entry_points=[MessageHandler(Filters.text(lang_dict["search drugs"]), main.search_drugs)],
-    states={
-        GET_DRUG_NAME: [
-            MessageHandler(Filters.text, drug.get_drug_name),
-            CallbackQueryHandler(drug.get_drug_name),
-        ],
+# drug_handler = ConversationHandler(
+#     entry_points=[MessageHandler(Filters.text(lang_dict["search drugs"]), main.search_drugs)],
+#     states={
+#         GET_DRUG_NAME: [
+#             MessageHandler(Filters.text, drug.get_drug_name),
+#             CallbackQueryHandler(drug.get_drug_name),
+#         ],
 
-    },
-    fallbacks=[],
-    name='drug',
-    persistent=True
-)
+#     },
+#     fallbacks=[],
+#     name='drug',
+#     persistent=True
+# )
+drug_handler = MessageHandler(Filters.text, drug.get_drug_name)
 
 about_handler = MessageHandler(Filters.text(lang_dict['about us']), main.about)
 partners_handler = MessageHandler(Filters.text(lang_dict['our partners']), main.partners)
@@ -72,11 +73,11 @@ site_handler = MessageHandler(Filters.text(lang_dict['our site']), main.site)
 search_handler = InlineQueryHandler(search.get_inline_query)
 
 handlers = [
-    login_handler,
-    settings_handler,
     search_handler,
     drug_handler,
     about_handler,
     partners_handler,
     site_handler,
+    login_handler,
+    settings_handler,
 ]

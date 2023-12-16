@@ -36,5 +36,5 @@ def select_drug_keyboard(update):
     buttons = [[
         InlineKeyboardButton(get_word('select drug', update), switch_inline_query_current_chat='')
     ]]
-    buttons = _inline_footer_buttons(update, buttons, back=False)
+    buttons = _inline_footer_buttons(update, buttons, back=False, main_menu=False)
     return InlineKeyboardMarkup(buttons)

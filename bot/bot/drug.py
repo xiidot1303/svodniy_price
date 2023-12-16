@@ -1,6 +1,5 @@
 from bot.bot import *
 
-@is_start
 def get_drug_name(update, context):
     msg = update.message.text
     # get drug_id from message
@@ -9,6 +8,7 @@ def get_drug_name(update, context):
     except:
         # delete message if not availabe drug_id in msg
         bot_delete_message(update, context)
+        main_menu(update, context)
         return
     
     # get drug obj by id

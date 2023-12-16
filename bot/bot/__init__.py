@@ -20,7 +20,7 @@ def main_menu(update, context):
 
     bot = context.bot
     keyboard = [
-        [get_word('search drugs', update)],
+        # [get_word('search drugs', update)],
         [get_word('about us', update), get_word('our partners', update)],
         [get_word('our site', update), get_word('settings', update)],
     ]
@@ -31,6 +31,17 @@ def main_menu(update, context):
         get_word("main menu", update),
         reply_markup=reply_markup,
     )
+
+    # send search drug text
+
+    text = select_drug_string(update)
+    # get message buttons
+    markup = select_drug_keyboard(update)
+    # send message
+    msg = update_message_reply_text(update, text, markup)
+    # save last message to user_data
+    context.user_data['last_msg'] = msg
+    
     check_username(update)
 
 def make_button_settings(update, context):
