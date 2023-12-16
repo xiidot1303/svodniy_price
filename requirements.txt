@@ -10,3 +10,4 @@ virtualenv==20.14.1
 dj-static==0.0.6
 xlrd==2.0.1
 transliterate==1.10.2
+django-apscheduler==0.6.2
