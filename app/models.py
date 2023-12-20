@@ -60,6 +60,13 @@ class Excel(models.Model):
         )
     published = models.DateTimeField(db_index=True, null=True, auto_now_add=True, blank=True, verbose_name='Дата загрузки')
     is_uploaded = models.BooleanField(default=False)
+    STATUS_CHOICES = [
+        (-1, "Ошибка"),
+        (0, "В процессе"),
+        (1, "Успешно")
+    ]
+    status = models.IntegerField(null=True, blank=False, choices=STATUS_CHOICES, default=0, verbose_name='Статус')
+    error = models.TextField(null=True, blank=False, max_length=10240, default="", verbose_name="Описание ошибки")
 
     def save(self, *args, **kwargs):
         self.published = datetime.now()
