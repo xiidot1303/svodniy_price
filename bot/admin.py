@@ -1,6 +1,7 @@
 from django.contrib import admin
 from bot.models import *
 from django.utils.html import format_html
+from solo.admin import SingletonModelAdmin
 
 class Bot_userAdmin(admin.ModelAdmin):
     list_display = ['name', 'username', 'phone', 'date']
@@ -62,3 +63,4 @@ class MesageAdmin(admin.ModelAdmin):
 
 admin.site.register(Bot_user, Bot_userAdmin)
 admin.site.register(Message, MesageAdmin)
+admin.site.register(Settings, SingletonModelAdmin)

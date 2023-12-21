@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from solo.models import SingletonModel
 
 class Bot_user(models.Model):
     user_id = models.BigIntegerField(null=True)
@@ -37,3 +38,10 @@ class Message(models.Model):
     class Meta:
         verbose_name = "Сообщение"
         verbose_name_plural = "Сообщения"
+
+class Settings(models.Model):
+    registration = models.BooleanField(default=False, verbose_name='Регистрация')
+
+    class Meta:
+        verbose_name = "Настройки"
+        verbose_name_plural = "Настройки"

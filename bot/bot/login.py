@@ -1,5 +1,5 @@
 from bot.bot import *
-
+from bot.services.settings_service import is_registration_active
 
 def _to_the_select_lang(update):
     update_message_reply_text(
@@ -51,9 +51,11 @@ def select_lang(update, context):
     obj.phone = ''
     obj.save()
 
-    main_menu(update, context)
-    return ConversationHandler.END
-    # return _to_the_get_name(update)
+    if is_registration_active():
+        return _to_the_get_name(update)
+    else:
+        main_menu(update, context)
+        return ConversationHandler.END
 
 
 @is_start_registr
