@@ -44,6 +44,7 @@ def update_or_create_drug_by_data(values):
             provider_name=value['provider_name'], 
             manufacturer=value['manufacturer'], 
             country=value['country'], 
+            atc=value['atc'],
             ) 
             for value in values 
             # if tuple(value.values()) not in existing_drugs_set

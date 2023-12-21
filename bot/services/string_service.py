@@ -7,7 +7,7 @@ def select_drug_string(update):
 
 def drug_information_list(update, drugs):
     # create template info text
-    info_text = "<b>{index}. {title}</b>\n<i>{title_en_text}:</i> {title_en}\n<i>{provider_text}:</i> {provider}\n<i>{manufacturer_text}:</i> {manufacturer}\n<i>{country_text}:</i> {country}\n"
+    info_text = "<b>{index}. {title}</b>\n<i>{title_en_text}:</i> {title_en}\n<i>{atc_text}:</i> {atc}\n<i>{provider_text}:</i> {provider}\n<i>{manufacturer_text}:</i> {manufacturer}\n<i>{country_text}:</i> {country}\n"
     info_text += "\n<b><i>{price_text}:</i> {price} {sum}</b>\n\n<i>{term_text}:</i> {term}\n<i>{date_published_text}:</i> {date_published}\n<i>{address_text}:</i> {address}\n<i>{phone_text}:</i> {phone}"
     # create line text
     line_text = "🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹"
@@ -22,6 +22,8 @@ def drug_information_list(update, drugs):
             title = drug.title,
             title_en_text = get_word('mnn', update),
             title_en = drug.title_en,
+            atc_text = get_word('atc', update),
+            atc = drug.atc,
             provider_text = get_word('provider', update),
             provider = drug.provider.name.capitalize() if drug.provider else '',
             manufacturer_text = get_word('manufacturer', update),

@@ -15,6 +15,7 @@ class Drug(models.Model):
     provider_name = models.CharField(null=True, blank=True, max_length=255, verbose_name='Поставщик')
     manufacturer = models.CharField(null=True, blank=True, max_length=255, verbose_name='Производитель')
     country = models.CharField(null=True, blank=True, max_length=64, verbose_name='Страна')
+    atc = models.CharField(null=True, blank=True, max_length=255, verbose_name='ATC классификация')
     published = models.DateTimeField(db_index=True, null=True, auto_now_add=True, blank=True, verbose_name='Дата загрузки')
 
     def save(self, *args, **kwargs):

@@ -96,7 +96,7 @@ lang_dict = {
 
     "country": ["Davlat", "Страна"],
 
-    "": ["", ""],
+    "atc": ["ATC klassifikatsiya", "ATC классификация"],
 
     "": ["", ""],
 
