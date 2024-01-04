@@ -78,7 +78,8 @@ def filter_drugs_by_title_regex(words, text_en, text_ru, text):
     for word in words:
         drugs = drugs.filter(
             Q(title__iregex=word[0]) | Q(title__iregex=word[1]) |
-            Q(title_en__icontains=word[0]) | Q(title_en__icontains=word[1])
+            Q(title_en__iregex=word[0]) |
+            Q(atc__iregex=word[0]) | Q(atc__iregex=word[1])
         )
     drugs = drugs.distinct('title').values_list('pk', flat=True)
     drugs = Drug.objects.filter(pk__in=drugs).annotate(
@@ -90,6 +91,9 @@ def filter_drugs_by_title_regex(words, text_en, text_ru, text):
             When(title__startswith=text_ru[0] if text_ru else '', then=Value(3.2)),
             When(title__icontains=text_ru, then=Value(4)),
             When(title_en__startswith=text_en, then=Value(5)),
+            When(title_en__icontains=text_en, then=Value(6)),
+            When(atc__startswith=text_en, then=Value(7)),
+            When(atc__icontains=text_ru, then=Value(8)),
             default=Value(100), output_field=IntegerField(),  
         )
     )
