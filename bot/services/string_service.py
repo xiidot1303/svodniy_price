@@ -7,7 +7,7 @@ def select_drug_string(update):
 
 def drug_information_list(update, drugs):
     # create template info text
-    info_text = "<b>{index}. {title}</b>\n<i>{title_en_text}:</i> {title_en}\n<i>{atc_text}:</i> {atc}\n<i>{provider_text}:</i> {provider}\n<i>{manufacturer_text}:</i> {manufacturer}\n<i>{country_text}:</i> {country}\n"
+    info_text = "<b>{index}. {title}</b>\n<i>{title_en_text}:</i> {title_en}\n<i>{atc_text}:</i> {atc}\n\n<b><i>{provider_text}:</i> {provider}</b>\n\n<i>{manufacturer_text}:</i> {manufacturer}\n<i>{country_text}:</i> {country}\n"
     info_text += "\n<b><i>{price_text}:</i> {price} {sum}</b>\n\n<i>{term_text}:</i> {term}\n<i>{date_published_text}:</i> {date_published}\n<i>{address_text}:</i> {address}\n<i>{phone_text}:</i> {phone}"
     # create line text
     line_text = "🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹"
