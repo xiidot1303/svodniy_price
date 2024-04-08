@@ -16,3 +16,5 @@ persistencebot
 !bot/services/__init__.py
 !bot/utils/__init__.py
 !bot/bot/__init__.py
+enter_server.sh
+
