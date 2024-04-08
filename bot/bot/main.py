@@ -1,7 +1,6 @@
 from bot.bot import *
 
 def start(update, context):
-    print(1111)
     if is_group(update):
         return 
 
@@ -20,6 +19,8 @@ def start(update, context):
 
 
 def settings(update, context):
+    update = update.callback_query
+    bot_edit_message_reply_markup(update, context)
     make_button_settings(update, context)
     return ALL_SETTINGS
 
@@ -37,6 +38,7 @@ def search_drugs(update, context):
     return GET_DRUG_NAME
 
 def about(update, context):
+    update = update.callback_query
     info = get_info()
     markup = select_drug_keyboard(update)
     user_lang = get_user_by_update(update).lang
@@ -46,21 +48,40 @@ def about(update, context):
         text = info.about_ru
     else:
         text = '🧾'
-    update_message_reply_text(update, text, reply_markup=markup)
+    bot_edit_message_text(update, context, text)
+    bot_edit_message_reply_markup(update, context, reply_markup = inline_back_keyboard(update))
+    # update_message_reply_text(update, text, reply_markup=markup)
     
 
 def partners(update, context):
+    update = update.callback_query
+    
     info = get_info()
-    markup = select_drug_keyboard(update)
+    # markup = select_drug_keyboard(update)
+    markup = None
+    bot_delete_message(update, context)
     if info:
         file = get_info().partners
         bot_send_document(update, context, file, reply_markup=markup)
     else:
         text = '🤝'
         update_message_reply_text(update, text, reply_markup=markup)
+    bot_send_message(update, context, get_word('our partners', update), reply_markup=inline_back_keyboard(update))
 
 def site(update, context):
+    update = update.callback_query
+
     text = get_info().site if get_info() else '🌐'
     markup = select_drug_keyboard(update)
-    update_message_reply_text(update, text, reply_markup=markup, disable_web_page_preview=False)
-    
+    # update_message_reply_text(update, text, reply_markup=markup, disable_web_page_preview=False)
+    bot_edit_message_text(update, context, text)
+    bot_edit_message_reply_markup(update, context, reply_markup = inline_back_keyboard(update))
+
+def back_to_main_menu(update, context):
+    update = update.callback_query
+    text = select_drug_string(update)
+    # get message buttons
+    markup = select_drug_keyboard(update)
+    # send message
+    bot_edit_message_text(update, context, text)
+    bot_edit_message_reply_markup(update, context, reply_markup=markup)

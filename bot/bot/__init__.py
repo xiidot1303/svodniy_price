@@ -19,18 +19,18 @@ def main_menu(update, context):
         www = 0  # do nothing
 
     bot = context.bot
-    keyboard = [
-        # [get_word('search drugs', update)],
-        [get_word('about us', update), get_word('our partners', update)],
-        [get_word('our site', update), get_word('settings', update)],
-    ]
-
-    reply_markup = ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True)
     bot.send_message(
         update.message.chat.id,
         get_word("main menu", update),
-        reply_markup=reply_markup,
+        reply_markup=reply_keyboard_remove(),
     )
+    # keyboards = [
+    #     # [get_word('search drugs', update)],
+    #     [get_word('about us', update), get_word('our partners', update)],
+    #     [get_word('our site', update), get_word('settings', update)],
+    # ]
+
+    # reply_markup = ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True)
 
     # send search drug text
 

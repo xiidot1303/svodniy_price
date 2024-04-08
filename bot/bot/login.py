@@ -26,7 +26,7 @@ def _to_the_get_contact(update):
         update,
         get_word("send number", update),
         reply_markup=reply_keyboard_markup(
-            [[i_contact], [get_word("back", update)]]
+            [[i_contact], [get_word("back", update)]], one_time_keyboard=True
         ),
     )
     return GET_CONTACT

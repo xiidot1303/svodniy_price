@@ -116,6 +116,16 @@ def bot_edit_message_text(update, context, text, msg_id=None):
     )
 
 
+def bot_edit_message_reply_markup(update, context, msg_id=None, reply_markup=None):
+    bot = context.bot
+    if not msg_id:
+        msg_id = update.message.message_id
+    bot.edit_message_reply_markup(
+        chat_id=update.message.chat.id,
+        message_id=msg_id,
+        reply_markup=reply_markup
+    )
+
 def reply_keyboard_markup(keyboard=[], resize_keyboard=True, one_time_keyboard=False):
     markup = ReplyKeyboardMarkup(
         keyboard=keyboard,

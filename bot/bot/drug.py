@@ -25,7 +25,6 @@ def get_drug_name(update, context):
     markup = select_drug_keyboard(update)
     # send messages
     bot_send_chat_action(update, context)
-    remove_inline_keyboards_from_last_msg(update, context)
     [bot_send_message(update, context, text) for text in drugs_info_text_list]
     msg = bot_send_message(update, context, price_diff_text, markup)
     # create usage
