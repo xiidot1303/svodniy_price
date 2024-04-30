@@ -45,6 +45,9 @@ def select_drug_keyboard(update):
             InlineKeyboardButton(text=get_word('our site', update), callback_data='our_site'),
             InlineKeyboardButton(text=get_word('settings', update), callback_data='settings'),
         ],
+        [
+            InlineKeyboardButton(text=get_word('video', update), callback_data='video'),
+        ],
 
     ]
     buttons = _inline_footer_buttons(update, buttons, back=False, main_menu=False)

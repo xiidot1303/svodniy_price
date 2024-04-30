@@ -74,6 +74,7 @@ about_handler_query = CallbackQueryHandler(main.about, pattern="about_us")
 partners_query = CallbackQueryHandler(main.partners, pattern="our_partners")
 site_query = CallbackQueryHandler(main.site, pattern="our_site")
 back_query = CallbackQueryHandler(main.back_to_main_menu, pattern="main_menu")
+video_query = CallbackQueryHandler(main.video, pattern="video")
 
 
 search_handler = InlineQueryHandler(search.get_inline_query)
@@ -91,5 +92,7 @@ handlers = [
     partners_query,
     site_query,
     settings_query,
-    back_query
+    video_query,
+    back_query,
+
 ]

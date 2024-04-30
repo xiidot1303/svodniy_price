@@ -77,6 +77,19 @@ def site(update, context):
     bot_edit_message_text(update, context, text)
     bot_edit_message_reply_markup(update, context, reply_markup = inline_back_keyboard(update))
 
+def video(update, context):
+    update = update.callback_query
+
+    user_lang = get_user_by_update(update).lang
+    if user_lang == 'uz':
+        file_id = "BAACAgIAAxkBAAJMVWYxGPdHedgi53FcjOZfCXBqoaLIAAKMUAACXHdJSSUYKfSvr0pMNAQ"
+    else:
+        file_id = "BAACAgIAAxkBAAJMU2YxGODdOFI80mLQcwrT55GfzkFBAAJVUAACXHdJSUc-uWkwJb8DNAQ"
+    
+    bot.send_video(update.message.chat.id, file_id)
+    bot_send_message(update, context, get_word('video', update), reply_markup=inline_back_keyboard(update))
+
+
 def back_to_main_menu(update, context):
     update = update.callback_query
     text = select_drug_string(update)

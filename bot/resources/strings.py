@@ -98,7 +98,7 @@ lang_dict = {
 
     "atc": ["ATC klassifikatsiya", "ATC классификация"],
 
-    "": ["", ""],
+    "video": ["Video instruksiya 📲", "Видеоинструкция 📲"],
 
     "": ["", ""],
 
