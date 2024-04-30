@@ -58,7 +58,7 @@ lang_dict = {
 
     "search drugs": ["Dorilarni qidirish🔎", "Поиск лекарств🔎"],
 
-    "select drug": ["Dorini tanlash 🔖", "Выбрать лекарство 🔖"],
+    "select drug": ["👉 Dorini tanlash 👈", "👉 Выбрать лекарство 👈"],
 
     "send drug name text": [
         "<b>Dorini tanlash 🔖</b> tugmasini bosgan holda qidiruvni oching va ma'lumot olmoqchi bo'lgan preparat nomini yozib, ustiga bosing. 🕵️‍♀️💊",
