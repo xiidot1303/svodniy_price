@@ -1,6 +1,7 @@
 from app.services import *
 from app.models import Drug, Provider
 from django.db.models import Case, When, Value, IntegerField
+from django.db import transaction
 
 def update_or_create_drug_by_data(values):
     # filter drugs already same with database and excel
@@ -35,27 +36,30 @@ def update_or_create_drug_by_data(values):
 
     # create models that are not available database
     # existing_drugs_set = set(existing_drugs)
-    new_drugs = [
-        Drug(
-            title=value['title'], 
-            title_en=value['title_en'], 
-            term=value['term'], 
-            price=value['price'], 
-            provider_name=value['provider_name'], 
-            manufacturer=value['manufacturer'], 
-            country=value['country'], 
-            atc=value['atc'],
-            ) 
-            for value in values 
-            # if tuple(value.values()) not in existing_drugs_set
-        ]
-    
-    # Delete unused drugs
-    # deleting_drugs.delete()
-    Drug.objects.all().delete()
+    with transaction.atomic():
+        new_drugs = [
+            Drug(
+                title=value['title'], 
+                title_en=value['title_en'], 
+                term=value['term'], 
+                price=value['price'], 
+                provider_name=value['provider_name'], 
+                manufacturer=value['manufacturer'], 
+                country=value['country'], 
+                atc=value['atc'],
+                ) 
+                for value in values 
+                # if tuple(value.values()) not in existing_drugs_set
+            ]
 
-    # Create drugs by data
-    Drug.objects.bulk_create(new_drugs)
+        # Delete unused drugs
+        # deleting_drugs.delete()
+        Drug.objects.all().delete()
+
+        # Create drugs by data
+        for i in range(0, len(new_drugs), 1000):
+            batch = new_drugs[i:i+1000]
+            Drug.objects.bulk_create(batch)
 
 
 def get_drug_by_pk(pk):
